@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <!-- Antenna base -->
+  <line x1="24" y1="4" x2="24" y2="9" stroke="#4f46e5" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="24" cy="3" r="2" fill="#4f46e5"/>
+
+  <!-- Head -->
+  <rect x="6" y="9" width="36" height="26" rx="7" ry="7" fill="#4f46e5"/>
+
+  <!-- Screen / face area -->
+  <rect x="10" y="14" width="28" height="16" rx="4" ry="4" fill="#fff" opacity="0.15"/>
+
+  <!-- Eye left -->
+  <circle cx="17" cy="22" r="3" fill="#fff"/>
+  <circle cx="18" cy="21" r="1.2" fill="#7b1918"/>
+
+  <!-- Eye right -->
+  <circle cx="31" cy="22" r="3" fill="#fff"/>
+  <circle cx="32" cy="21" r="1.2" fill="#7b1918"/>
+
+  <!-- Mouth -->
+  <path d="M18 28 Q24 32.5 30 28" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Ear / connector left -->
+  <rect x="2" y="17" width="5" height="7" rx="2" ry="2" fill="#3730a3"/>
+
+  <!-- Ear / connector right -->
+  <rect x="41" y="17" width="5" height="7" rx="2" ry="2" fill="#3730a3"/>
+
+  <!-- Neck -->
+  <rect x="19" y="35" width="10" height="4" rx="2" ry="2" fill="#3730a3"/>
+  <!-- Shoulders -->
+  <rect x="12" y="39" width="24" height="6" rx="3" ry="3" fill="#4f46e5"/>
+</svg>

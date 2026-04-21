@@ -1,0 +1,102 @@
+// =============================================================================
+// Custom Moodle Theme — SCSS Variable Overrides  (scss/pre.scss)
+//
+// This file is injected BEFORE Bootstrap / Moodle SCSS is compiled, so any
+// Bootstrap or Moodle variable declared here will override downstream defaults.
+// Do NOT put selector rules here — use post.scss for that.
+//
+// Default palette (override with your own brand colors):
+//   primary      : #4f46e5   ← PRIMARY (navbar, buttons, headings)
+//   secondary    : #0ea5e9   ← secondary / links
+//   grey         : #333      ← body text
+//   footer bg    : #767676
+// Fonts: Montserrat (headings) · Titillium Web (body)
+// =============================================================================
+
+// ---------------------------------------------------------------------------
+// 1. Brand palette (customize to match your institution)
+// ---------------------------------------------------------------------------
+$myuni-primary:         #4f46e5;   // primary — navbar, buttons, headings
+$myuni-primary-dark:    #3730a3;   // hover/active state
+$myuni-primary-light:   #6366f1;   // lighter tint for borders/dividers
+$myuni-secondary:       #0ea5e9;   // secondary / link colour
+$myuni-secondary-dark:  #0369a1;   // link hover
+$myuni-grey:        #333333;   // body text
+$myuni-grey-medium: #767676;   // footer background
+$myuni-grey-light:  #f4f4f4;   // page background / table zebra
+
+// ---------------------------------------------------------------------------
+// 2. Bootstrap / Moodle semantic colour overrides
+// ---------------------------------------------------------------------------
+$primary:           $myuni-primary;
+$secondary:         $myuni-secondary;
+
+// Links use the secondary colour for readability on white backgrounds.
+$link-color:        $myuni-secondary;
+$link-hover-color:  $myuni-secondary-dark;
+
+// Headings use the primary colour.
+$headings-color:    $myuni-primary;
+$headings-font-weight: 700;
+
+// ---------------------------------------------------------------------------
+// 3. Typography
+// ---------------------------------------------------------------------------
+// Montserrat — headings
+// Titillium Web — body / UI text
+// Google Fonts are loaded in post.scss @import; declared here for the SCSS
+// variable so Moodle picks them up in the compile pass.
+$font-family-sans-serif:
+    'Titillium Web',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+
+$headings-font-family:
+    'Montserrat',
+    'Segoe UI',
+    Arial,
+    sans-serif;
+
+$font-size-base:    0.9375rem;   // 15 px
+$line-height-base:  1.6;
+
+// ---------------------------------------------------------------------------
+// 4. Navbar
+// ---------------------------------------------------------------------------
+$navbar-padding-y:                  0.6rem;
+$navbar-dark-color:                 rgba(255, 255, 255, 0.90);
+$navbar-dark-hover-color:           #ffffff;
+$navbar-dark-active-color:          #ffffff;
+$navbar-dark-brand-color:           #ffffff;
+$navbar-dark-toggler-border-color:  rgba(255, 255, 255, 0.2);
+
+// ---------------------------------------------------------------------------
+// 5. Body / page chrome
+// ---------------------------------------------------------------------------
+$body-bg:           $myuni-grey-light;
+$body-color:        $myuni-grey;
+
+// ---------------------------------------------------------------------------
+// 6. Cards
+// ---------------------------------------------------------------------------
+$card-border-width:     0;
+$card-border-radius:    0.5rem;
+$card-spacer-x:         1.25rem;
+$card-spacer-y:         1rem;
+
+// ---------------------------------------------------------------------------
+// 7. Buttons
+// ---------------------------------------------------------------------------
+$btn-border-radius:     0.35rem;
+$btn-font-weight:       600;
+
+// ---------------------------------------------------------------------------
+// 8. Borders / shadows
+// ---------------------------------------------------------------------------
+$border-radius:     0.375rem;
+$box-shadow-sm:     0 1px 4px rgba(0, 0, 0, 0.08);
+$box-shadow:        0 2px 8px rgba(0, 0, 0, 0.10);
+$box-shadow-lg:     0 6px 24px rgba(0, 0, 0, 0.12);

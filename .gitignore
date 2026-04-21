@@ -1,0 +1,31 @@
+# ---- OS / Editor ----
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# ---- Build output ----
+dist/
+
+# ---- Node / npm (AMD module development) ----
+node_modules/
+
+# ---- PHP ----
+vendor/
+composer.lock
+
+# ---- Docker (local state) ----
+docker-data/
+moodledata/
+
+# ---- Logs ----
+*.log
+
+# ---- Environment / secrets ----
+.env
+.env.*
+!.env.example

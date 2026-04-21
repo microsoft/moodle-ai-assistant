@@ -1,0 +1,45 @@
+services:
+  moodle:
+    build: .
+    ports:
+      - "8080:80"
+    volumes:
+      - moodlefiles:/var/www/html                          # Moodle code + config.php
+      - moodledata:/var/moodledata                         # User uploads and generated files
+      #- ./theme/myuni:/var/www/html/theme/myuni:ro         # MyUni custom theme (bind mount)
+      - ./local/aichat:/var/www/html/local/aichat:ro       # AI Chat plugin (bind mount)
+    environment:
+      - MOODLE_DATABASE_HOST=db
+      - MOODLE_DATABASE_PORT_NUMBER=5432
+      - MOODLE_DATABASE_NAME=moodle
+      - MOODLE_DATABASE_USER=moodle
+      - MOODLE_DATABASE_PASSWORD=moodlepass
+      - MOODLE_USERNAME=admin
+      - MOODLE_PASSWORD=Admin1234!
+      - MOODLE_EMAIL=admin@example.com
+      - MOODLE_SITE_NAME=Moodle
+      - MOODLE_WWWROOT=http://localhost:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: moodle
+      POSTGRES_USER: moodle
+      POSTGRES_PASSWORD: moodlepass
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U moodle"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  moodlefiles:
+  moodledata:
+  pgdata:

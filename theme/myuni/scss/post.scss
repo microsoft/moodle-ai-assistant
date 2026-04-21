@@ -1,0 +1,945 @@
+// =============================================================================
+// Custom Moodle Theme — Component CSS Rules  (scss/post.scss)
+//
+// Appended AFTER Bootstrap / Moodle SCSS compilation.
+//
+// Default palette (customize freely):
+//   Primary   : #4f46e5
+//   Secondary : #0ea5e9
+//   Body text     : #333
+//   Footer bg     : #767676
+//   Link hover    : #e6481e
+//   Focus outline : rgb(41 77 172)
+//
+// Fonts loaded via Google Fonts:
+//   Montserrat     — headings
+//   Titillium Web  — body / UI
+// =============================================================================
+
+// ---------------------------------------------------------------------------
+// 0.  Google Fonts import (Montserrat + Titillium Web)
+// ---------------------------------------------------------------------------
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Titillium+Web:wght@300;400;600;700&display=swap');
+
+body {
+    font-family: 'Titillium Web', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Montserrat', Arial, sans-serif;
+    color: #4f46e5;
+}
+
+// ---------------------------------------------------------------------------
+// 1.  Top accent strip (4 px primary line pinned across the very top)
+// ---------------------------------------------------------------------------
+body::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: #4f46e5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    pointer-events: none;
+}
+
+#nav-bar,
+.navbar {
+    position: sticky;
+    top: 4px;  // sit below the 4px accent strip
+    z-index: 1030;
+}
+
+// ---------------------------------------------------------------------------
+// 2.  Navbar / Header
+// ---------------------------------------------------------------------------
+.navbar {
+    background-color: #4f46e5 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    min-height: 68px;
+    border-bottom: none;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff !important;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+// Force logo white on the primary background.
+.navbar-brand img.logo,
+.logo img {
+    height: 46px;
+    width: auto;
+    max-width: 200px;
+    filter: brightness(0) invert(1);
+}
+
+#usernavigation .nav-link,
+#usernavigation .usermenu-container .btn {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+#usernavigation .nav-link:hover,
+#usernavigation .usermenu-container .btn:hover {
+    color: #ffffff !important;
+}
+
+.navbar .dropdown-toggle {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+// ---------------------------------------------------------------------------
+// 3.  Primary navigation (Moodle 4.x secondary bar)
+// ---------------------------------------------------------------------------
+.primary-navigation {
+    background-color: #3730a3;  // darker accent stripe below main header
+}
+
+.primary-navigation .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.primary-navigation .nav-link:hover,
+.primary-navigation .nav-link:focus {
+    color: #ffffff !important;
+    border-bottom-color: rgba(255, 255, 255, 0.6);
+}
+
+.primary-navigation .nav-link.active {
+    color: #ffffff !important;
+    border-bottom-color: #ffffff;
+}
+
+// Secondary navigation (course-level tabs).
+.secondary-navigation .nav-tabs .nav-link {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+.secondary-navigation .nav-tabs .nav-link.active,
+.secondary-navigation .nav-tabs .nav-link:hover {
+    color: #4f46e5;
+    border-bottom-color: #4f46e5;
+}
+
+// ---------------------------------------------------------------------------
+// 4.  Breadcrumb
+// ---------------------------------------------------------------------------
+.breadcrumb {
+    background-color: transparent;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.breadcrumb-item a {
+    color: #0ea5e9;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+    color: #0369a1;
+}
+
+.breadcrumb-item.active {
+    color: #767676;
+}
+
+// ---------------------------------------------------------------------------
+// 5.  Page content area
+// ---------------------------------------------------------------------------
+#page-content {
+    padding-top: 1.25rem;
+}
+
+.page-header-headings h1,
+#page-header .page-header-headings h1 {
+    color: #4f46e5;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+.sectionname a,
+.section-title a {
+    color: #4f46e5 !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sectionname a:hover,
+.section-title a:hover {
+    color: #3730a3 !important;
+    text-decoration: underline;
+}
+
+.activityname a,
+.instancename a {
+    color: #0ea5e9;
+    font-weight: 600;
+}
+
+.activityname a:hover {
+    color: #0369a1;
+}
+
+// ---------------------------------------------------------------------------
+// 6.  Course cards & dashboard
+// ---------------------------------------------------------------------------
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(176, 43, 41, 0.18);
+    transform: translateY(-2px);
+}
+
+.dashboard-card .coursename a,
+.coursebox .coursename a {
+    color: #4f46e5;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.dashboard-card .coursename a:hover,
+.coursebox .coursename a:hover {
+    color: #3730a3;
+}
+
+.progress-bar {
+    background-color: #4f46e5;
+}
+
+.categoryname a {
+    color: #4f46e5;
+    font-weight: 600;
+}
+
+// ---------------------------------------------------------------------------
+// 7.  Login page
+// ---------------------------------------------------------------------------
+body#page-login-index #page-wrapper {
+    background: linear-gradient(135deg, #3730a3 0%, #4f46e5 55%, #6366f1 100%);
+    min-height: 100vh;
+}
+
+body#page-login-index #page-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+body#page-login-index .card {
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.30);
+    border: none;
+}
+
+// Primary-colored top border on the login card.
+body#page-login-index .card::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: #4f46e5;
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+body#page-login-index .card-body {
+    padding: 2rem 2.5rem 2.5rem;
+}
+
+body#page-login-index h2 {
+    color: #4f46e5;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+body#page-login-index .btn-primary {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+}
+
+// ---------------------------------------------------------------------------
+// 8.  Drawers / sidebar (Moodle 4.x navigation drawer)
+// ---------------------------------------------------------------------------
+#nav-drawer,
+[data-region="left-hand-drawer"] {
+    background-color: #333333;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#nav-drawer .list-group-item,
+[data-region="left-hand-drawer"] .list-group-item {
+    background-color: transparent;
+    color: #d6d6d6;
+    border-color: rgba(255, 255, 255, 0.06);
+    font-size: 0.9rem;
+}
+
+#nav-drawer .list-group-item:hover,
+[data-region="left-hand-drawer"] .list-group-item:hover {
+    background-color: rgba(176, 43, 41, 0.15);
+    color: #ffffff;
+}
+
+#nav-drawer .list-group-item.active,
+[data-region="left-hand-drawer"] .list-group-item.active {
+    background-color: rgba(176, 43, 41, 0.25);
+    color: #ffffff;
+    font-weight: 600;
+    border-left: 3px solid #4f46e5;
+}
+
+.drawertoggle {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+// ---------------------------------------------------------------------------
+// 9.  Buttons
+// ---------------------------------------------------------------------------
+.btn-primary {
+    background-color: #4f46e5;
+    border-color: #4f46e5;
+    color: #ffffff;
+    font-weight: 600;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #3730a3;
+    border-color: #3730a3;
+    box-shadow: 0 3px 10px rgba(176, 43, 41, 0.35);
+    color: #ffffff;
+}
+
+.btn-primary:active {
+    background-color: #731b1a !important;
+    border-color: #731b1a !important;
+}
+
+.btn-secondary {
+    background-color: #0ea5e9;
+    border-color: #0ea5e9;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #0369a1;
+    border-color: #0369a1;
+    color: #ffffff;
+}
+
+// ---------------------------------------------------------------------------
+// 10.  Tables
+// ---------------------------------------------------------------------------
+.table {
+    background-color: #ffffff;
+}
+
+.table thead th {
+    background-color: #4f46e5;
+    color: #ffffff;
+    border-top: none;
+    border-bottom: none;
+    font-family: 'Montserrat', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(176, 43, 41, 0.04);
+}
+
+// ---------------------------------------------------------------------------
+// 11.  Alerts & notifications
+// ---------------------------------------------------------------------------
+.alert-info {
+    background-color: #fdf0f0;
+    border-color: #4f46e5;
+    color: #4f46e5;
+    border-left: 4px solid #4f46e5;
+}
+
+.alert-success {
+    border-left: 4px solid #1f811f;
+}
+
+.alert-warning {
+    border-left: 4px solid #e6481e;
+}
+
+.alert-danger {
+    border-left: 4px solid #ec0000;
+}
+
+.popover-region-notifications .popover-region-header-container {
+    background-color: #4f46e5;
+    color: #ffffff;
+}
+
+// ---------------------------------------------------------------------------
+// 12.  Footer
+// ---------------------------------------------------------------------------
+#page-footer {
+    background-color: #767676 !important;
+    color: #ffffff !important;
+    border-top: 4px solid #4f46e5;
+    padding: 2rem 0 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    font-family: 'Titillium Web', Arial, sans-serif;
+}
+
+#page-footer a {
+    color: #f4f4f4 !important;
+    text-decoration: none;
+}
+
+#page-footer a:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+#page-footer img.logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    height: 40px;
+    width: auto;
+}
+
+// ---------------------------------------------------------------------------
+// 13.  Accessibility  (focus style: rgb(41 77 172) blue)
+// ---------------------------------------------------------------------------
+:focus-visible {
+    outline: 2px solid rgb(41, 77, 172) !important;
+    outline-offset: 2px;
+}
+
+.sr-only-focusable:focus {
+    background-color: #4f46e5;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 0.35rem 0.35rem;
+    font-weight: 700;
+    z-index: 9999;
+}
+
+// ---------------------------------------------------------------------------
+// 1.  Top accent strip  (4 px gold line pinned across the very top)
+// ---------------------------------------------------------------------------
+#nav-bar,
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+}
+
+body::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, #003087 0%, #003087 55%, #c8a84b 100%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    pointer-events: none;
+}
+
+// Push the navbar down below the 4 px strip.
+#nav-bar {
+    top: 4px;
+}
+
+// ---------------------------------------------------------------------------
+// 2.  Navbar / Header
+// ---------------------------------------------------------------------------
+.navbar {
+    background-color: #003087 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    min-height: 68px;
+    border-bottom: none;
+}
+
+// Brand text / logo container.
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ffffff !important;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+}
+
+// Site logo image inside the brand — ensure it is visible on dark background.
+.navbar-brand img.logo,
+.logo img {
+    height: 46px;
+    width: auto;
+    max-width: 200px;
+    filter: brightness(0) invert(1);  // Force white rendering on dark header.
+}
+
+// User-menu & top-right icons.
+#usernavigation .nav-link,
+#usernavigation .usermenu-container .btn {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+#usernavigation .nav-link:hover,
+#usernavigation .usermenu-container .btn:hover {
+    color: #c8a84b !important;
+}
+
+// Language menu / other utility links in the header.
+.navbar .dropdown-toggle {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+// ---------------------------------------------------------------------------
+// 3.  Primary navigation (Moodle 4.x secondary bar below main navbar)
+// ---------------------------------------------------------------------------
+.primary-navigation {
+    background-color: #1a2a4a;
+}
+
+.primary-navigation .nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 600;
+    padding: 0.6rem 1rem;
+    border-bottom: 3px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.primary-navigation .nav-link:hover,
+.primary-navigation .nav-link:focus {
+    color: #c8a84b !important;
+    border-bottom-color: #c8a84b;
+}
+
+.primary-navigation .nav-link.active {
+    color: #ffffff !important;
+    border-bottom-color: #c8a84b;
+}
+
+// Secondary navigation (course-level tabs).
+.secondary-navigation .nav-tabs {
+    border-bottom-color: #dee2e6;
+}
+
+.secondary-navigation .nav-tabs .nav-link {
+    color: #003087;
+    font-weight: 600;
+}
+
+.secondary-navigation .nav-tabs .nav-link.active,
+.secondary-navigation .nav-tabs .nav-link:hover {
+    color: #003087;
+    border-bottom-color: #003087;
+}
+
+// ---------------------------------------------------------------------------
+// 4.  Breadcrumb
+// ---------------------------------------------------------------------------
+.breadcrumb {
+    background-color: transparent;
+    padding: 0.5rem 0;
+    font-size: 0.875rem;
+}
+
+.breadcrumb-item a {
+    color: #0a4d96;
+    text-decoration: none;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+    color: #003087;
+}
+
+.breadcrumb-item.active {
+    color: #6c757d;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #adb5bd;
+}
+
+// ---------------------------------------------------------------------------
+// 5.  Page content area
+// ---------------------------------------------------------------------------
+#page-content {
+    padding-top: 1.25rem;
+}
+
+// Page-level h1 (course/activity name shown in header).
+#page-header .page-header-headings h1,
+.page-header-headings h1 {
+    color: #003087;
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+// Section headers inside courses.
+.sectionname a,
+.section-title a {
+    color: #003087 !important;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.sectionname a:hover,
+.section-title a:hover {
+    color: #0a4d96 !important;
+    text-decoration: underline;
+}
+
+// Activity / resource title links.
+.activityname a,
+.instancename a {
+    color: #0a4d96;
+    font-weight: 600;
+}
+
+.activityname a:hover {
+    color: #003087;
+}
+
+// ---------------------------------------------------------------------------
+// 6.  Course cards & dashboard
+// ---------------------------------------------------------------------------
+.card {
+    border: none;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.25s ease, transform 0.2s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(0, 48, 135, 0.16);
+    transform: translateY(-2px);
+}
+
+// Course card header strip.
+.dashboard-card .card-img-top,
+.courseimage {
+    border-radius: 0;
+}
+
+// Course name inside card.
+.dashboard-card .coursename a,
+.coursebox .coursename a {
+    color: #003087;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.dashboard-card .coursename a:hover,
+.coursebox .coursename a:hover {
+    color: #c8a84b;
+}
+
+// Progress bar in course cards.
+.coursecard-body .progress-bar,
+.progress-bar {
+    background-color: #003087;
+}
+
+// Category headings on course listing.
+.categoryname a {
+    color: #003087;
+    font-weight: 600;
+}
+
+// ---------------------------------------------------------------------------
+// 7.  Login page
+// ---------------------------------------------------------------------------
+body#page-login-index #page-wrapper {
+    background: linear-gradient(135deg, #003087 0%, #1a4a8a 55%, #2e6eb5 100%);
+    min-height: 100vh;
+}
+
+body#page-login-index #page-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+// Make the login card stand out on the gradient background.
+body#page-login-index .card {
+    border-radius: 0.75rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.30);
+    border: none;
+    overflow: visible;
+}
+
+// Gold accent bar on top of the login card.
+body#page-login-index .card::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(90deg, #003087, #c8a84b);
+    border-radius: 0.75rem 0.75rem 0 0;
+    margin-bottom: 0;
+}
+
+body#page-login-index .card-body {
+    padding: 2rem 2.5rem 2.5rem;
+}
+
+// Login page heading.
+body#page-login-index h2 {
+    color: #003087;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+// Submit button on login page.
+body#page-login-index .btn-primary {
+    width: 100%;
+    padding: 0.6rem;
+    font-size: 1rem;
+}
+
+// ---------------------------------------------------------------------------
+// 8.  Drawers / sidebar (Moodle 4.x navigation drawer)
+// ---------------------------------------------------------------------------
+#nav-drawer,
+[data-region="left-hand-drawer"] {
+    background-color: #1a2a4a;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+#nav-drawer .list-group-item,
+[data-region="left-hand-drawer"] .list-group-item {
+    background-color: transparent;
+    color: #c8d4e6;
+    border-color: rgba(255, 255, 255, 0.06);
+    font-size: 0.9rem;
+}
+
+#nav-drawer .list-group-item:hover,
+[data-region="left-hand-drawer"] .list-group-item:hover {
+    background-color: rgba(200, 168, 75, 0.12);
+    color: #ffffff;
+}
+
+#nav-drawer .list-group-item.active,
+[data-region="left-hand-drawer"] .list-group-item.active {
+    background-color: rgba(200, 168, 75, 0.20);
+    color: #ffffff;
+    font-weight: 600;
+    border-left: 3px solid #c8a84b;
+}
+
+#nav-drawer .list-group-item i,
+[data-region="left-hand-drawer"] .list-group-item i {
+    color: #7ab4d8;
+}
+
+// Drawer toggle button.
+.drawertoggle {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+// ---------------------------------------------------------------------------
+// 9.  Buttons
+// ---------------------------------------------------------------------------
+.btn-primary {
+    background-color: #003087;
+    border-color: #003087;
+    color: #ffffff;
+    font-weight: 600;
+    transition: background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #024cb5;
+    border-color: #024cb5;
+    box-shadow: 0 3px 10px rgba(0, 48, 135, 0.30);
+}
+
+.btn-primary:active {
+    background-color: #002570 !important;
+    border-color: #002570 !important;
+}
+
+.btn-secondary {
+    background-color: #5c8abf;
+    border-color: #5c8abf;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #4a76ad;
+    border-color: #4a76ad;
+    color: #ffffff;
+}
+
+// Edit mode toggle button (Moodle 4.x top-right switch).
+.editmode-switch-form .custom-control-label {
+    font-weight: 600;
+}
+
+// ---------------------------------------------------------------------------
+// 10.  Tables
+// ---------------------------------------------------------------------------
+.table {
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+}
+
+.table thead th {
+    background-color: #003087;
+    color: #ffffff;
+    border-top: none;
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 0.875rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.table-bordered thead th {
+    border-color: #002570;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(0, 48, 135, 0.04);
+}
+
+// Grades table.
+#page-grade-report-grader-index .gradeparent {
+    overflow-x: auto;
+}
+
+// ---------------------------------------------------------------------------
+// 11.  Alerts & notifications
+// ---------------------------------------------------------------------------
+.alert-info {
+    background-color: #e8f0fb;
+    border-color: #003087;
+    color: #003087;
+}
+
+.alert-info .alert-link {
+    color: #002570;
+    font-weight: 700;
+}
+
+.alert-success {
+    border-left: 4px solid #28a745;
+}
+
+.alert-warning {
+    border-left: 4px solid #c8a84b;
+}
+
+.alert-danger {
+    border-left: 4px solid #dc3545;
+}
+
+// Moodle notification popup.
+.popover-region-notifications .popover-region-header-container {
+    background-color: #003087;
+    color: #ffffff;
+}
+
+// ---------------------------------------------------------------------------
+// 12.  Footer
+// ---------------------------------------------------------------------------
+#page-footer {
+    background-color: #1a2a4a !important;
+    color: #b8c8d8 !important;
+    border-top: 3px solid #c8a84b;
+    padding: 2rem 0 1.5rem;
+    margin-top: 3rem;
+    font-size: 0.875rem;
+}
+
+#page-footer a {
+    color: #7ab4d8 !important;
+    text-decoration: none;
+}
+
+#page-footer a:hover {
+    color: #c8a84b !important;
+    text-decoration: underline;
+}
+
+// Moodle "powered by" text.
+#page-footer .helplink a,
+#page-footer .logininfo a {
+    color: #7ab4d8 !important;
+}
+
+// Footer logo (if site logo appears in footer).
+#page-footer img.logo {
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+    height: 40px;
+    width: auto;
+}
+
+// Footer institutional info block.
+.footer-content-container {
+    padding: 0.5rem 0;
+    line-height: 1.8;
+}
+
+// ---------------------------------------------------------------------------
+// 13.  Accessibility
+// ---------------------------------------------------------------------------
+// High-contrast gold focus ring on all interactive elements.
+:focus-visible {
+    outline: 3px solid #c8a84b !important;
+    outline-offset: 3px;
+}
+
+// Skip-to-content link (hidden until focused).
+.sr-only-focusable:focus {
+    background-color: #003087;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 0 0 0.35rem 0.35rem;
+    font-weight: 700;
+    z-index: 9999;
+}

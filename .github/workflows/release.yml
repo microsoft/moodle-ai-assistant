@@ -1,0 +1,77 @@
+name: Build & Release plugin bundles
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag name for manual release (e.g. v0.1.0)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    name: Build plugin ZIPs and publish GitHub Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Resolve release tag
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "name=${{ inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Install zip
+        run: sudo apt-get update && sudo apt-get install -y zip rsync
+
+      - name: Build plugin bundles
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
+
+      - name: List built artifacts
+        run: ls -lh dist/
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: moodle-plugin-bundles
+          path: dist/*.zip
+          if-no-files-found: error
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          {
+            echo 'notes<<EOF'
+            echo "## Moodle AI Chat — ${{ steps.tag.outputs.name }}"
+            echo ""
+            echo "Install the ZIPs below via **Site administration → Plugins → Install plugins** in Moodle."
+            echo ""
+            echo "### Artifacts"
+            for f in dist/*.zip; do
+              echo "- \`$(basename "$f")\`"
+            done
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.name }}
+          name: ${{ steps.tag.outputs.name }}
+          body: ${{ steps.notes.outputs.notes }}
+          files: dist/*.zip
+          draft: false
+          prerelease: ${{ contains(steps.tag.outputs.name, '-') }}

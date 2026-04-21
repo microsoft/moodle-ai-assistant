@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/aichat/db" VERSION="2024010105" COMMENT="AI Chat plugin tables"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd">
+  <TABLES>
+
+    <!-- Conversation threads: one active thread per user per course. -->
+    <TABLE NAME="local_aichat_threads" COMMENT="Chat conversation threads.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to user.id"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to course.id"/>
+        <FIELD NAME="title" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="New Chat" SEQUENCE="false"
+               COMMENT="Auto-generated from first user message"/>
+        <FIELD NAME="summary" TYPE="text" NOTNULL="false" SEQUENCE="false"
+               COMMENT="Rolling summary of older conversation history for context compression"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+        <KEY NAME="fk_courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ix_user_course" UNIQUE="false" FIELDS="userid, courseid"
+               COMMENT="Fast lookup of active thread for a user in a course"/>
+      </INDEXES>
+    </TABLE>
+
+    <!-- Individual messages within a thread. -->
+    <TABLE NAME="local_aichat_messages" COMMENT="Chat messages within threads.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="threadid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to local_aichat_threads.id"/>
+        <FIELD NAME="role" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false"
+               COMMENT="user or assistant"/>
+        <FIELD NAME="message" TYPE="text" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_threadid" TYPE="foreign" FIELDS="threadid" REFTABLE="local_aichat_threads"
+             REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ix_threadid" UNIQUE="false" FIELDS="threadid"/>
+      </INDEXES>
+    </TABLE>
+
+    <!-- Thumbs up/down feedback on assistant messages. -->
+    <TABLE NAME="local_aichat_feedback" COMMENT="User feedback on assistant messages.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="messageid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to local_aichat_messages.id"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to user.id"/>
+        <FIELD NAME="feedback" TYPE="int" LENGTH="2" NOTNULL="true" SEQUENCE="false"
+               COMMENT="1 = thumbs up, -1 = thumbs down"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_messageid" TYPE="foreign" FIELDS="messageid" REFTABLE="local_aichat_messages"
+             REFFIELDS="id"/>
+        <KEY NAME="fk_userid" TYPE="foreign" FIELDS="userid" REFTABLE="user" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ix_message_user" UNIQUE="true" FIELDS="messageid, userid"
+               COMMENT="One feedback per user per message"/>
+      </INDEXES>
+    </TABLE>
+
+    <!-- Per-course feature toggles. -->
+    <TABLE NAME="local_aichat_course_settings" COMMENT="Per-course AI Chat feature toggles.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to course.id"/>
+        <FIELD NAME="enable_export" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"
+               COMMENT="Whether chat export is enabled for this course"/>
+        <FIELD NAME="enable_upload" TYPE="int" LENGTH="2" NOTNULL="true" DEFAULT="0" SEQUENCE="false"
+               COMMENT="Whether file/image upload is enabled for this course"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ix_courseid" UNIQUE="true" FIELDS="courseid"
+               COMMENT="One settings row per course"/>
+      </INDEXES>
+    </TABLE>
+
+    <!-- RAG vector index of course content chunks. -->
+    <TABLE NAME="local_aichat_embeddings" COMMENT="RAG embedding index of course content.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="courseid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to course.id"/>
+        <FIELD NAME="chunk_type" TYPE="char" LENGTH="50" NOTNULL="true" SEQUENCE="false"
+               COMMENT="section, activity, page, resource, glossary, book_chapter, label, lesson_page"/>
+        <FIELD NAME="chunk_id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="Moodle ID of the source record (sectionid or cmid)"/>
+        <FIELD NAME="chunk_title" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false"
+               COMMENT="Human-readable name of the chunk"/>
+        <FIELD NAME="content_text" TYPE="text" NOTNULL="true" SEQUENCE="false"
+               COMMENT="Plaintext content of the chunk"/>
+        <FIELD NAME="content_hash" TYPE="char" LENGTH="64" NOTNULL="true" SEQUENCE="false"
+               COMMENT="SHA-256 hash of content_text for change detection"/>
+        <FIELD NAME="embedding" TYPE="text" NOTNULL="false" SEQUENCE="false"
+               COMMENT="JSON-encoded float array from Azure OpenAI Embeddings API"/>
+        <FIELD NAME="token_count" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"
+               COMMENT="Token count of the chunk for prompt budget tracking"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_courseid" TYPE="foreign" FIELDS="courseid" REFTABLE="course" REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ix_courseid" UNIQUE="false" FIELDS="courseid"/>
+        <INDEX NAME="ix_course_chunk" UNIQUE="true" FIELDS="courseid, chunk_type, chunk_id"
+               COMMENT="One embedding per chunk per course for upsert logic"/>
+      </INDEXES>
+    </TABLE>
+
+    <!-- Token usage tracking per message. -->
+    <TABLE NAME="local_aichat_token_usage" COMMENT="Token usage per message.">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="messageid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"
+               COMMENT="FK to local_aichat_messages.id"/>
+        <FIELD NAME="deployment" TYPE="char" LENGTH="255" NOTNULL="true" DEFAULT="" SEQUENCE="false"
+               COMMENT="Azure OpenAI deployment name used for this request"/>
+        <FIELD NAME="prompt_tokens" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="completion_tokens" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0"
+               SEQUENCE="false"/>
+        <FIELD NAME="total_tokens" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+        <KEY NAME="fk_messageid" TYPE="foreign" FIELDS="messageid" REFTABLE="local_aichat_messages"
+             REFFIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="ix_messageid" UNIQUE="false" FIELDS="messageid"/>
+        <INDEX NAME="ix_deployment" UNIQUE="false" FIELDS="deployment"
+               COMMENT="For per-deployment token aggregation"/>
+      </INDEXES>
+    </TABLE>
+
+  </TABLES>
+</XMLDB>

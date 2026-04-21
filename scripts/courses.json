@@ -1,0 +1,266 @@
+[
+  {
+    "FullName": "Introduzione all'Informatica",
+    "ShortName": "INFO101",
+    "Summary": "Corso introduttivo ai concetti fondamentali dell'informatica: architettura dei calcolatori, algoritmi, programmazione, sistemi operativi e reti.",
+    "Category": "Informatica",
+    "Sections": [
+      {
+        "Title": "Generale",
+        "Summary": "Benvenuti al corso di Introduzione all'Informatica.",
+        "Activities": [
+          { "Type": "forum", "Name": "Annunci del corso", "Intro": "Forum per gli annunci ufficiali del docente." },
+          { "Type": "page", "Name": "Programma del corso", "Content": "<h3>Programma</h3><p>Il corso copre: architettura dei calcolatori, rappresentazione dei dati, algoritmi e strutture dati, programmazione in Python, sistemi operativi, reti di calcolatori.</p><p><strong>Obiettivi formativi:</strong> Lo studente acquisir&agrave; le competenze di base per comprendere il funzionamento dei sistemi informatici.</p><h4>Modalit&agrave; d'esame</h4><p>Prova scritta (50%) + Progetto finale (30%) + Partecipazione (20%)</p>" }
+        ]
+      },
+      {
+        "Title": "Architettura dei Calcolatori",
+        "Summary": "Componenti hardware e modello di Von Neumann.",
+        "Activities": [
+          { "Type": "page", "Name": "Il modello di Von Neumann", "Content": "<h3>Architettura di Von Neumann</h3><p>Il modello di Von Neumann descrive un'architettura composta da:</p><ul><li><strong>CPU</strong> (Unit&agrave; di Controllo e ALU)</li><li><strong>Memoria Centrale</strong> (RAM)</li><li><strong>Dispositivi di I/O</strong></li><li><strong>Bus di sistema</strong></li></ul><p>Le istruzioni e i dati risiedono nella stessa memoria e vengono elaborati sequenzialmente dalla CPU.</p>" },
+          { "Type": "page", "Name": "Rappresentazione dei dati", "Content": "<h3>Sistemi di numerazione</h3><p>I calcolatori utilizzano il <strong>sistema binario</strong> (base 2). Ogni cifra binaria &egrave; detta <em>bit</em>. Un gruppo di 8 bit forma un <em>byte</em>.</p><p><strong>Conversioni:</strong> decimale-binario, binario-decimale, esadecimale.</p><p>Esempio: 13 in binario = 1101</p>" },
+          { "Type": "assign", "Name": "Esercizi di conversione binaria", "Intro": "Convertire i seguenti numeri decimali in binario e viceversa. Mostrare tutti i passaggi del procedimento." }
+        ]
+      },
+      {
+        "Title": "Algoritmi e Programmazione",
+        "Summary": "Fondamenti di algoritmi e introduzione alla programmazione in Python.",
+        "Activities": [
+          { "Type": "page", "Name": "Cos'e' un algoritmo", "Content": "<h3>Definizione di Algoritmo</h3><p>Un algoritmo &egrave; una sequenza finita di istruzioni non ambigue che, eseguite in ordine, risolvono un problema in tempo finito.</p><p><strong>Propriet&agrave;:</strong></p><ul><li>Finitezza</li><li>Determinismo</li><li>Input/Output definiti</li><li>Effettivit&agrave;</li></ul>" },
+          { "Type": "page", "Name": "Introduzione a Python", "Content": "<h3>Il linguaggio Python</h3><p>Python &egrave; un linguaggio di programmazione ad alto livello, interpretato e con tipizzazione dinamica.</p><p>Esempio di codice:</p><pre><code>print('Hello, World!')\n\nnome = 'Mario'\neta = 25\nprint(nome, 'ha', eta, 'anni')</code></pre>" },
+          { "Type": "assign", "Name": "Primo programma Python", "Intro": "Scrivere un programma Python che chieda all'utente il proprio nome e lo saluti. Caricare il file .py." },
+          { "Type": "forum", "Name": "Discussione: Difficolta' con Python", "Intro": "Spazio per condividere dubbi e soluzioni sulla programmazione in Python." }
+        ]
+      },
+      {
+        "Title": "Sistemi Operativi",
+        "Summary": "Funzioni e componenti dei sistemi operativi moderni.",
+        "Activities": [
+          { "Type": "page", "Name": "Il Sistema Operativo", "Content": "<h3>Cos'&egrave; un Sistema Operativo</h3><p>Il SO &egrave; il software di base che gestisce le risorse hardware e fornisce servizi ai programmi applicativi.</p><p><strong>Funzioni principali:</strong></p><ul><li>Gestione dei processi</li><li>Gestione della memoria</li><li>File system</li><li>Gestione I/O</li><li>Sicurezza e protezione</li></ul>" },
+          { "Type": "assign", "Name": "Relazione sui Sistemi Operativi", "Intro": "Scrivere una relazione (max 1500 parole) confrontando due sistemi operativi a scelta tra Windows, Linux e macOS." }
+        ]
+      },
+      {
+        "Title": "Reti di Calcolatori",
+        "Summary": "Fondamenti di networking e protocolli di comunicazione.",
+        "Activities": [
+          { "Type": "page", "Name": "Il modello TCP/IP", "Content": "<h3>Modello TCP/IP</h3><p>Il modello TCP/IP organizza i protocolli di rete in 4 livelli:</p><ol><li><strong>Accesso alla rete</strong> (Ethernet, WiFi)</li><li><strong>Internet</strong> (IP, ICMP)</li><li><strong>Trasporto</strong> (TCP, UDP)</li><li><strong>Applicazione</strong> (HTTP, FTP, SMTP, DNS)</li></ol>" },
+          { "Type": "page", "Name": "Indirizzi IP e DNS", "Content": "<h3>Indirizzamento IP</h3><p>Ogni dispositivo in rete ha un indirizzo IP univoco. IPv4 usa 32 bit (es. 192.168.1.1), IPv6 usa 128 bit.</p><p>Il <strong>DNS</strong> (Domain Name System) traduce i nomi di dominio in indirizzi IP.</p>" },
+          { "Type": "assign", "Name": "Progetto finale: Analisi di rete", "Intro": "Utilizzando strumenti come ping, traceroute e nslookup, analizzare il percorso di un pacchetto verso un server remoto. Documentare i risultati." }
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Matematica Discreta",
+    "ShortName": "MAT201",
+    "Summary": "Corso di matematica discreta: logica, insiemi, relazioni, funzioni, combinatoria, teoria dei grafi e algebra booleana.",
+    "Category": "Matematica",
+    "Sections": [
+      {
+        "Title": "Generale",
+        "Summary": "Informazioni generali sul corso di Matematica Discreta.",
+        "Activities": [
+          { "Type": "forum", "Name": "Avvisi del docente", "Intro": "Bacheca per comunicazioni ufficiali del docente." },
+          { "Type": "page", "Name": "Syllabus e modalita' d'esame", "Content": "<h3>Syllabus</h3><p>Argomenti: logica proposizionale, teoria degli insiemi, relazioni, funzioni, induzione, combinatoria, grafi, alberi, algebra booleana.</p><p><strong>Esame:</strong> prova scritta (60%) + orale (40%). Sono previsti esoneri parziali.</p>" }
+        ]
+      },
+      {
+        "Title": "Logica Proposizionale",
+        "Summary": "Proposizioni, connettivi logici, tavole di verita', inferenza.",
+        "Activities": [
+          { "Type": "page", "Name": "Proposizioni e connettivi", "Content": "<h3>Logica Proposizionale</h3><p>Una <strong>proposizione</strong> &egrave; un enunciato che pu&ograve; essere vero o falso.</p><p><strong>Connettivi:</strong></p><ul><li>Negazione: NOT (&not;)</li><li>Congiunzione: AND (&and;)</li><li>Disgiunzione: OR (&or;)</li><li>Implicazione: &rarr;</li><li>Bi-condizionale: &harr;</li></ul>" },
+          { "Type": "page", "Name": "Tavole di verita'", "Content": "<h3>Tavole di verit&agrave;</h3><p>Le tavole di verit&agrave; elencano tutti i possibili valori di verit&agrave; di un'espressione logica.</p><table border='1' cellpadding='5'><tr><th>p</th><th>q</th><th>p &and; q</th></tr><tr><td>V</td><td>V</td><td>V</td></tr><tr><td>V</td><td>F</td><td>F</td></tr><tr><td>F</td><td>V</td><td>F</td></tr><tr><td>F</td><td>F</td><td>F</td></tr></table>" },
+          { "Type": "assign", "Name": "Esercizi di logica", "Intro": "Costruire le tavole di verita' per le seguenti espressioni logiche e determinare quali sono tautologie." }
+        ]
+      },
+      {
+        "Title": "Teoria degli Insiemi",
+        "Summary": "Insiemi, operazioni, diagrammi di Venn, insiemi potenza.",
+        "Activities": [
+          { "Type": "page", "Name": "Operazioni sugli insiemi", "Content": "<h3>Operazioni fondamentali</h3><ul><li><strong>Unione:</strong> A &cup; B - elementi in A oppure in B</li><li><strong>Intersezione:</strong> A &cap; B - elementi in A e in B</li><li><strong>Differenza:</strong> A \\ B - elementi in A ma non in B</li><li><strong>Complemento:</strong> A' = U \\ A</li><li><strong>Prodotto cartesiano:</strong> A &times; B - coppie ordinate</li></ul><p><strong>Leggi di De Morgan:</strong> (A &cup; B)' = A' &cap; B' e (A &cap; B)' = A' &cup; B'</p>" },
+          { "Type": "assign", "Name": "Diagrammi di Venn", "Intro": "Disegnare i diagrammi di Venn per le operazioni indicate e verificare le leggi di De Morgan." }
+        ]
+      },
+      {
+        "Title": "Relazioni e Funzioni",
+        "Summary": "Relazioni binarie, proprieta', funzioni, composizione.",
+        "Activities": [
+          { "Type": "page", "Name": "Relazioni binarie", "Content": "<h3>Relazioni</h3><p>Una <strong>relazione binaria</strong> R da A a B &egrave; un sottoinsieme di A &times; B.</p><p><strong>Propriet&agrave;:</strong></p><ul><li>Riflessiva: per ogni a in A, (a,a) appartiene a R</li><li>Simmetrica: se (a,b) in R allora (b,a) in R</li><li>Transitiva: se (a,b) e (b,c) in R allora (a,c) in R</li><li>Antisimmetrica: se (a,b) e (b,a) in R allora a = b</li></ul>" },
+          { "Type": "assign", "Name": "Esercizi su relazioni", "Intro": "Determinare le proprieta' delle relazioni date e rappresentarle come matrici e grafi." },
+          { "Type": "forum", "Name": "Discussione: Applicazioni delle relazioni", "Intro": "Discutete esempi di relazioni d'ordine e di equivalenza nella vita quotidiana e nell'informatica." }
+        ]
+      },
+      {
+        "Title": "Teoria dei Grafi",
+        "Summary": "Grafi, cammini, alberi, grafi planari, colorazione.",
+        "Activities": [
+          { "Type": "page", "Name": "Introduzione ai grafi", "Content": "<h3>Grafi</h3><p>Un <strong>grafo</strong> G = (V, E) &egrave; una coppia formata da un insieme di vertici V e un insieme di archi E.</p><p><strong>Tipi:</strong> orientati/non orientati, pesati, completi, bipartiti.</p><p><strong>Grado di un vertice:</strong> numero di archi incidenti.</p><p><strong>Teorema della stretta di mano:</strong> la somma dei gradi &egrave; pari al doppio del numero di archi.</p>" },
+          { "Type": "page", "Name": "Alberi e grafi speciali", "Content": "<h3>Alberi</h3><p>Un <strong>albero</strong> &egrave; un grafo connesso e aciclico. Un albero con n vertici ha esattamente n-1 archi.</p><p><strong>Albero ricoprente:</strong> sottografo che &egrave; un albero e contiene tutti i vertici del grafo originale.</p><p>Algoritmi: Kruskal, Prim per l'albero ricoprente minimo.</p>" },
+          { "Type": "assign", "Name": "Progetto: Grafi e algoritmi", "Intro": "Dato un grafo pesato, trovare l'albero ricoprente minimo con l'algoritmo di Kruskal. Mostrare tutti i passi dell'esecuzione." }
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Lingua Inglese B2",
+    "ShortName": "ENG301",
+    "Summary": "Corso di lingua inglese livello B2 (CEFR). Reading, writing, listening, speaking, grammar e vocabolario per il contesto accademico.",
+    "Category": "Lingue",
+    "Sections": [
+      {
+        "Title": "General",
+        "Summary": "Welcome to the English B2 course.",
+        "Activities": [
+          { "Type": "forum", "Name": "Course Announcements", "Intro": "Official announcements from the instructor." },
+          { "Type": "page", "Name": "Course Overview and Expectations", "Content": "<h3>Course Overview</h3><p>This course aims to develop your English skills to <strong>B2 level</strong> (CEFR). By the end of the course, you will be able to:</p><ul><li>Understand complex texts on concrete and abstract topics</li><li>Interact with fluency with native speakers</li><li>Produce clear, detailed text on a wide range of subjects</li><li>Explain viewpoints on topical issues</li></ul><p><strong>Assessment:</strong> Continuous assessment (40%) + Final exam (60%)</p>" }
+        ]
+      },
+      {
+        "Title": "Reading Comprehension",
+        "Summary": "Developing advanced reading skills for academic texts.",
+        "Activities": [
+          { "Type": "page", "Name": "Reading Strategies", "Content": "<h3>Academic Reading Strategies</h3><p>Effective reading at B2 level involves:</p><ul><li><strong>Skimming:</strong> Reading quickly for the main idea</li><li><strong>Scanning:</strong> Looking for specific information</li><li><strong>Inferring meaning:</strong> Understanding words from context</li><li><strong>Critical reading:</strong> Evaluating arguments and evidence</li></ul><p>Practice these strategies with the texts provided in the assignments.</p>" },
+          { "Type": "page", "Name": "Text: The Digital Revolution", "Content": "<h3>The Digital Revolution</h3><p>The digital revolution has transformed every aspect of modern life. From how we communicate to how we work, technology has reshaped our daily routines in ways that were unimaginable just a few decades ago.</p><p>The advent of smartphones, social media, and cloud computing has created a connected world where information flows freely across borders. However, this connectivity comes with challenges: privacy concerns, digital divides, and the spread of misinformation.</p><p><em>Read the complete text and answer the comprehension questions in the assignment below.</em></p>" },
+          { "Type": "assign", "Name": "Reading Comprehension Exercise 1", "Intro": "Read 'The Digital Revolution' text and answer the following comprehension questions. Write your answers in complete sentences." }
+        ]
+      },
+      {
+        "Title": "Writing Skills",
+        "Summary": "Academic writing: essays, reports, and formal correspondence.",
+        "Activities": [
+          { "Type": "page", "Name": "Essay Writing Guide", "Content": "<h3>Writing Academic Essays</h3><p>A well-structured essay at B2 level should include:</p><ol><li><strong>Introduction:</strong> Present the topic, provide context, state your thesis</li><li><strong>Body paragraphs:</strong> Each paragraph develops one main idea with evidence</li><li><strong>Conclusion:</strong> Summarize key points and restate the thesis</li></ol><p><strong>Useful linking words:</strong> Furthermore, Moreover, However, Nevertheless, In contrast, Consequently, Therefore</p>" },
+          { "Type": "assign", "Name": "Essay: Technology and Education", "Intro": "Write a 500-word essay on the topic: 'How has technology changed the way we learn?' Include an introduction, at least 3 body paragraphs, and a conclusion." },
+          { "Type": "assign", "Name": "Formal Email Writing", "Intro": "Write a formal email to a university professor requesting an appointment to discuss your research project. Include appropriate greeting, reason for writing, proposed dates, and formal closing." }
+        ]
+      },
+      {
+        "Title": "Listening and Speaking",
+        "Summary": "Developing oral comprehension and communication skills.",
+        "Activities": [
+          { "Type": "page", "Name": "Presentation Skills", "Content": "<h3>Giving Academic Presentations</h3><p>Key skills for effective presentations:</p><ul><li><strong>Structure:</strong> Clear introduction, main points, conclusion</li><li><strong>Delivery:</strong> Eye contact, clear pronunciation, appropriate pace</li><li><strong>Visual aids:</strong> Simple, clear slides that support your message</li><li><strong>Interaction:</strong> Engage the audience with questions</li></ul><p><strong>Useful phrases:</strong> 'I would like to start by...', 'Moving on to...', 'To sum up...', 'Are there any questions?'</p>" },
+          { "Type": "forum", "Name": "Speaking Practice Forum", "Intro": "Post audio recordings of yourselves practicing the speaking exercises. Give constructive feedback to your classmates." },
+          { "Type": "assign", "Name": "Oral Presentation", "Intro": "Prepare and record a 5-minute oral presentation on a topic of your choice related to your field of study. Upload the video or audio file." }
+        ]
+      },
+      {
+        "Title": "Grammar and Vocabulary",
+        "Summary": "Advanced grammar structures and academic vocabulary.",
+        "Activities": [
+          { "Type": "page", "Name": "Advanced Grammar Review", "Content": "<h3>B2 Grammar Focus</h3><p>Key grammar areas at B2 level:</p><ul><li><strong>Conditional sentences:</strong> Zero, first, second, third and mixed conditionals</li><li><strong>Passive voice:</strong> All tenses, including with modals</li><li><strong>Reported speech:</strong> Statements, questions, commands</li><li><strong>Relative clauses:</strong> Defining and non-defining</li><li><strong>Modal verbs:</strong> Deduction, obligation, permission, ability</li></ul>" },
+          { "Type": "page", "Name": "Academic Word List", "Content": "<h3>Essential Academic Vocabulary</h3><p>The following words are frequently used in academic contexts:</p><p><strong>Analysis, Approach, Assessment, Authority, Available, Benefit, Concept, Consistent, Context, Data, Definition, Derived, Distribution, Economic, Environment, Established, Evidence, Factor, Financial, Formula, Function, Identified, Income, Individual, Interpretation, Involved, Issues, Method, Occur, Percent, Period, Policy, Principle, Procedure, Process, Required, Research, Response, Role, Section, Significant, Similar, Source, Specific, Structure, Theory, Variable</strong></p>" },
+          { "Type": "assign", "Name": "Grammar Exercises", "Intro": "Complete the grammar exercises on conditionals and reported speech. Show your work and explain the grammar rules applied." }
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Storia dell'Arte Moderna",
+    "ShortName": "ART401",
+    "Summary": "Panoramica dell'arte dal Rinascimento all'Impressionismo: movimenti artistici, opere principali, contesto storico e sociale.",
+    "Category": "Arte e Design",
+    "Sections": [
+      {
+        "Title": "Generale",
+        "Summary": "Benvenuti al corso di Storia dell'Arte Moderna.",
+        "Activities": [
+          { "Type": "forum", "Name": "Bacheca del corso", "Intro": "Comunicazioni e avvisi del docente." },
+          { "Type": "page", "Name": "Introduzione al corso", "Content": "<h3>Presentazione del corso</h3><p>Questo corso esplora i principali movimenti artistici dall'et&agrave; moderna all'Ottocento:</p><ul><li>Il Rinascimento (XV-XVI sec.)</li><li>Il Barocco (XVII sec.)</li><li>Il Neoclassicismo (XVIII-XIX sec.)</li><li>Il Romanticismo (XIX sec.)</li><li>L'Impressionismo (XIX sec.)</li></ul><p><strong>Modalit&agrave; d'esame:</strong> Tesina finale + Presentazione orale + Partecipazione attiva ai forum.</p>" }
+        ]
+      },
+      {
+        "Title": "Il Rinascimento",
+        "Summary": "L'arte del Quattrocento e Cinquecento italiano.",
+        "Activities": [
+          { "Type": "page", "Name": "Il Rinascimento italiano", "Content": "<h3>Il Rinascimento</h3><p>Il Rinascimento (XV-XVI secolo) segna la rinascita dell'arte classica. Nasce a Firenze con la riscoperta della prospettiva e dell'anatomia umana.</p><p><strong>Caratteristiche:</strong></p><ul><li>Prospettiva lineare (Brunelleschi)</li><li>Studio dell'anatomia e delle proporzioni</li><li>Mecenatismo (Medici, papi)</li><li>Umanesimo e centralit&agrave; dell'uomo</li></ul>" },
+          { "Type": "page", "Name": "I grandi maestri", "Content": "<h3>Leonardo, Michelangelo, Raffaello</h3><p><strong>Leonardo da Vinci</strong> (1452-1519): La Gioconda, L'Ultima Cena, Uomo Vitruviano. Artista, scienziato e inventore universale.</p><p><strong>Michelangelo Buonarroti</strong> (1475-1564): La Cappella Sistina, il David, la Piet&agrave;. Scultore, pittore e architetto.</p><p><strong>Raffaello Sanzio</strong> (1483-1520): La Scuola di Atene, la Madonna Sistina. Maestro dell'armonia e della composizione.</p>" },
+          { "Type": "forum", "Name": "Il vostro capolavoro rinascimentale preferito", "Intro": "Scegliete un'opera del Rinascimento e spiegate perche' vi colpisce. Commentate almeno due interventi dei compagni." },
+          { "Type": "assign", "Name": "Analisi iconografica", "Intro": "Scegliere un'opera rinascimentale e realizzare un'analisi iconografica completa (max 2000 parole): descrizione, contesto storico, significato simbolico, tecnica." }
+        ]
+      },
+      {
+        "Title": "Il Barocco",
+        "Summary": "Arte e architettura del Seicento europeo.",
+        "Activities": [
+          { "Type": "page", "Name": "L'eta' del Barocco", "Content": "<h3>Il Barocco (XVII secolo)</h3><p>Il Barocco nasce a Roma come espressione della Controriforma. Caratterizzato da:</p><ul><li>Drammaticit&agrave; e teatralit&agrave;</li><li>Uso del chiaroscuro (Caravaggio)</li><li>Movimento e dinamismo</li><li>Grandiosit&agrave; e ricchezza decorativa</li><li>Emozione e coinvolgimento dello spettatore</li></ul><p><strong>Artisti principali:</strong> Caravaggio, Bernini, Borromini, Rubens, Rembrandt, Vel&aacute;zquez.</p>" },
+          { "Type": "page", "Name": "Caravaggio: Luce e ombra", "Content": "<h3>Michelangelo Merisi da Caravaggio</h3><p>Caravaggio (1571-1610) rivoluzion&ograve; la pittura con il suo uso drammatico della luce (<strong>tenebrismo</strong>).</p><p><strong>Opere principali:</strong></p><ul><li>Vocazione di San Matteo</li><li>Giuditta e Oloferne</li><li>Canestra di frutta</li><li>Davide con la testa di Golia</li></ul><p>Il suo realismo crudo e il rifiuto dell'idealizzazione influenzarono profondamente l'arte europea.</p>" },
+          { "Type": "assign", "Name": "Confronto stilistico", "Intro": "Confrontare un'opera rinascimentale con un'opera barocca dello stesso soggetto. Evidenziare le differenze stilistiche, compositive e concettuali (max 1500 parole)." }
+        ]
+      },
+      {
+        "Title": "Il Neoclassicismo",
+        "Summary": "Il ritorno all'antico tra XVIII e XIX secolo.",
+        "Activities": [
+          { "Type": "page", "Name": "Il Neoclassicismo", "Content": "<h3>Il Neoclassicismo (1750-1830)</h3><p>Reazione al Barocco e al Rococ&ograve;, il Neoclassicismo propugna il ritorno ai modelli dell'arte greco-romana.</p><p><strong>Principi:</strong></p><ul><li>Nobile semplicit&agrave; e quieta grandezza (Winckelmann)</li><li>Razionalit&agrave; e ordine</li><li>Ispirazione all'antico</li><li>Temi morali e civili</li></ul><p><strong>Artisti:</strong> Antonio Canova, Jacques-Louis David, Jean-Auguste-Dominique Ingres.</p>" },
+          { "Type": "page", "Name": "Antonio Canova", "Content": "<h3>Antonio Canova (1757-1822)</h3><p>Massimo scultore neoclassico. Le sue opere si distinguono per la perfezione formale e l'ideale di bellezza classica.</p><p><strong>Opere celebri:</strong></p><ul><li>Amore e Psiche</li><li>Paolina Borghese come Venere vincitrice</li><li>Le Tre Grazie</li><li>Monumento funebre a Maria Cristina d'Austria</li></ul>" },
+          { "Type": "assign", "Name": "Ricerca sul Neoclassicismo", "Intro": "Realizzare una presentazione (10-15 slide) su un artista neoclassico a scelta, includendo biografia, contesto storico, analisi di almeno 3 opere." }
+        ]
+      },
+      {
+        "Title": "L'Impressionismo",
+        "Summary": "La rivoluzione della luce e del colore.",
+        "Activities": [
+          { "Type": "page", "Name": "L'Impressionismo", "Content": "<h3>L'Impressionismo (1860-1890)</h3><p>Movimento nato in Francia che rivoluzion&ograve; la pittura occidentale.</p><p><strong>Caratteristiche:</strong></p><ul><li>Pittura en plein air</li><li>Studio della luce naturale</li><li>Pennellate rapide e visibili</li><li>Soggetti della vita quotidiana</li><li>Colori puri accostati sulla tela</li></ul><p><strong>Il nome</strong> deriva dal quadro 'Impression, soleil levant' di Claude Monet (1872).</p>" },
+          { "Type": "page", "Name": "I maestri dell'Impressionismo", "Content": "<h3>Gli Impressionisti</h3><p><strong>Claude Monet</strong>: Le Ninfee, La Cattedrale di Rouen, Impression soleil levant.</p><p><strong>Pierre-Auguste Renoir</strong>: Bal au moulin de la Galette, Colazione dei canottieri.</p><p><strong>Edgar Degas</strong>: Le ballerine, L'assenzio.</p><p><strong>Camille Pissarro</strong>: Boulevard Montmartre.</p><p><strong>Berthe Morisot</strong>: La culla, prima donna impressionista.</p>" },
+          { "Type": "forum", "Name": "L'eredita' dell'Impressionismo", "Intro": "In che modo l'Impressionismo ha influenzato l'arte contemporanea? Portate esempi concreti." },
+          { "Type": "assign", "Name": "Tesina finale", "Intro": "Scegliere un movimento artistico studiato nel corso e redigere una tesina (3000-4000 parole) che ne analizzi origine, sviluppo, opere principali e influenza sull'arte successiva." }
+        ]
+      }
+    ]
+  },
+  {
+    "FullName": "Fondamenti di Fisica",
+    "ShortName": "FIS101",
+    "Summary": "Corso base di fisica: meccanica classica, termodinamica, elettromagnetismo, ottica e introduzione alla fisica moderna.",
+    "Category": "Scienze",
+    "Sections": [
+      {
+        "Title": "Generale",
+        "Summary": "Informazioni generali sul corso di Fondamenti di Fisica.",
+        "Activities": [
+          { "Type": "forum", "Name": "Avvisi e comunicazioni", "Intro": "Bacheca ufficiale del corso." },
+          { "Type": "page", "Name": "Programma e prerequisiti", "Content": "<h3>Programma del corso</h3><p><strong>Argomenti:</strong> grandezze fisiche e misure, cinematica, dinamica, lavoro ed energia, termodinamica, elettrostatica, corrente elettrica, magnetismo, onde e ottica.</p><p><strong>Prerequisiti:</strong> conoscenze di matematica di base (algebra, trigonometria, calcolo elementare).</p><p><strong>Esame:</strong> scritto con problemi numerici (70%) + orale di teoria (30%).</p>" }
+        ]
+      },
+      {
+        "Title": "Meccanica",
+        "Summary": "Cinematica, dinamica e principi di conservazione.",
+        "Activities": [
+          { "Type": "page", "Name": "Cinematica del punto materiale", "Content": "<h3>Cinematica</h3><p>La cinematica descrive il moto senza considerarne le cause.</p><p><strong>Grandezze fondamentali:</strong></p><ul><li>Posizione: x(t)</li><li>Velocit&agrave;: v = dx/dt</li><li>Accelerazione: a = dv/dt</li></ul><p><strong>Moto rettilineo uniforme:</strong> x = x<sub>0</sub> + v&middot;t</p><p><strong>Moto uniformemente accelerato:</strong> x = x<sub>0</sub> + v<sub>0</sub>&middot;t + &frac12;&middot;a&middot;t&sup2;</p>" },
+          { "Type": "page", "Name": "Le leggi di Newton", "Content": "<h3>Dinamica: Le tre leggi di Newton</h3><p><strong>Prima legge (inerzia):</strong> Un corpo permane nel suo stato di quiete o moto rettilineo uniforme se la risultante delle forze &egrave; nulla.</p><p><strong>Seconda legge:</strong> F = m&middot;a (la forza &egrave; uguale alla massa per l'accelerazione)</p><p><strong>Terza legge (azione-reazione):</strong> Ad ogni azione corrisponde una reazione uguale e contraria.</p>" },
+          { "Type": "page", "Name": "Lavoro, energia e conservazione", "Content": "<h3>Lavoro ed Energia</h3><p><strong>Lavoro:</strong> W = F&middot;s&middot;cos(&theta;)</p><p><strong>Energia cinetica:</strong> K = &frac12;&middot;m&middot;v&sup2;</p><p><strong>Energia potenziale gravitazionale:</strong> U = m&middot;g&middot;h</p><p><strong>Teorema dell'energia cinetica:</strong> W<sub>tot</sub> = &Delta;K</p><p><strong>Conservazione dell'energia meccanica:</strong> se agiscono solo forze conservative, E = K + U = costante.</p>" },
+          { "Type": "assign", "Name": "Problemi di meccanica", "Intro": "Risolvere i 10 problemi di meccanica allegati. Mostrare tutti i passaggi e indicare le unita' di misura." }
+        ]
+      },
+      {
+        "Title": "Termodinamica",
+        "Summary": "Temperatura, calore, gas ideali e principi della termodinamica.",
+        "Activities": [
+          { "Type": "page", "Name": "Temperatura e calore", "Content": "<h3>Termodinamica</h3><p><strong>Temperatura:</strong> grandezza che misura lo stato termico di un corpo. Scale: Celsius, Kelvin, Fahrenheit.</p><p><strong>Calore:</strong> energia in transito tra corpi a temperatura diversa. Q = m&middot;c&middot;&Delta;T</p><p><strong>Capacit&agrave; termica specifica:</strong> quantit&agrave; di calore necessaria per innalzare di 1 K la temperatura di 1 kg di sostanza.</p>" },
+          { "Type": "page", "Name": "I principi della termodinamica", "Content": "<h3>Principi della Termodinamica</h3><p><strong>Principio zero:</strong> Se A &egrave; in equilibrio termico con C, e B &egrave; in equilibrio termico con C, allora A &egrave; in equilibrio termico con B.</p><p><strong>Primo principio:</strong> &Delta;U = Q - W (conservazione dell'energia)</p><p><strong>Secondo principio (Clausius):</strong> Il calore non passa spontaneamente da un corpo freddo a uno caldo. L'entropia di un sistema isolato non pu&ograve; mai diminuire.</p>" },
+          { "Type": "assign", "Name": "Esercizi di termodinamica", "Intro": "Risolvere i problemi sui gas ideali e sui cicli termodinamici. Disegnare i diagrammi P-V per ogni trasformazione." },
+          { "Type": "forum", "Name": "Applicazioni della termodinamica", "Intro": "Discutete delle applicazioni pratiche dei principi della termodinamica nella vita quotidiana e nella tecnologia." }
+        ]
+      },
+      {
+        "Title": "Elettromagnetismo",
+        "Summary": "Elettrostatica, corrente elettrica, magnetismo e induzione.",
+        "Activities": [
+          { "Type": "page", "Name": "Elettrostatica", "Content": "<h3>Elettrostatica</h3><p><strong>Carica elettrica:</strong> propriet&agrave; fondamentale della materia. Due tipi: positiva e negativa.</p><p><strong>Legge di Coulomb:</strong> F = k&middot;|q<sub>1</sub>&middot;q<sub>2</sub>|/r&sup2;</p><p><strong>Campo elettrico:</strong> E = F/q = k&middot;Q/r&sup2;</p><p><strong>Potenziale elettrico:</strong> V = k&middot;Q/r</p><p><strong>Teorema di Gauss:</strong> il flusso del campo elettrico attraverso una superficie chiusa &egrave; uguale alla carica racchiusa diviso &epsilon;<sub>0</sub>.</p>" },
+          { "Type": "page", "Name": "Corrente e circuiti", "Content": "<h3>Corrente Elettrica e Circuiti</h3><p><strong>Corrente:</strong> I = dQ/dt (flusso di cariche). Unit&agrave;: Ampere (A).</p><p><strong>Legge di Ohm:</strong> V = R&middot;I</p><p><strong>Resistenze in serie:</strong> R<sub>tot</sub> = R<sub>1</sub> + R<sub>2</sub> + ...</p><p><strong>Resistenze in parallelo:</strong> 1/R<sub>tot</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + ...</p><p><strong>Leggi di Kirchhoff:</strong> legge dei nodi (conservazione della carica) e legge delle maglie (conservazione dell'energia).</p>" },
+          { "Type": "assign", "Name": "Problemi di elettromagnetismo", "Intro": "Risolvere i problemi su campi elettrici, circuiti e legge di Faraday. Disegnare gli schemi circuitali." }
+        ]
+      },
+      {
+        "Title": "Ottica e Onde",
+        "Summary": "Onde meccaniche, ottica geometrica e cenni di fisica moderna.",
+        "Activities": [
+          { "Type": "page", "Name": "Onde meccaniche", "Content": "<h3>Onde</h3><p>Un'<strong>onda</strong> &egrave; una perturbazione che si propaga nello spazio trasportando energia.</p><p><strong>Grandezze:</strong></p><ul><li>Lunghezza d'onda: &lambda;</li><li>Frequenza: f (Hz)</li><li>Periodo: T = 1/f</li><li>Velocit&agrave;: v = &lambda;&middot;f</li></ul><p><strong>Tipi:</strong> trasversali (corda) e longitudinali (suono).</p><p><strong>Fenomeni:</strong> riflessione, rifrazione, diffrazione, interferenza.</p>" },
+          { "Type": "page", "Name": "Ottica geometrica", "Content": "<h3>Ottica Geometrica</h3><p><strong>Legge della riflessione:</strong> &theta;<sub>i</sub> = &theta;<sub>r</sub></p><p><strong>Legge di Snell (rifrazione):</strong> n<sub>1</sub>&middot;sin(&theta;<sub>1</sub>) = n<sub>2</sub>&middot;sin(&theta;<sub>2</sub>)</p><p><strong>Specchi:</strong> equazione dei punti coniugati 1/p + 1/q = 1/f</p><p><strong>Lenti sottili:</strong> stessa equazione, con convenzione sui segni.</p><p><strong>Angolo critico:</strong> sin(&theta;<sub>c</sub>) = n<sub>2</sub>/n<sub>1</sub> (riflessione totale interna).</p>" },
+          { "Type": "assign", "Name": "Problemi di ottica", "Intro": "Risolvere i problemi su riflessione, rifrazione, specchi e lenti. Tracciare i raggi principali nei diagrammi." },
+          { "Type": "assign", "Name": "Relazione di laboratorio", "Intro": "Redigere una relazione di laboratorio su un esperimento di ottica (rifrazione con prisma, lenti convergenti, ecc.). Includere: obiettivo, apparato sperimentale, procedura, dati raccolti, analisi e conclusioni." }
+        ]
+      }
+    ]
+  }
+]

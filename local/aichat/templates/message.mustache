@@ -1,0 +1,100 @@
+{{!
+    AI Chat - Message bubble template
+
+    Context variables:
+    - id: int - message ID
+    - role: string - 'user' or 'assistant'
+    - message: string - rendered HTML message content
+    - timecreated: int - unix timestamp
+    - timeformatted: string - human-readable timestamp
+    - feedback: int - 1 (up), -1 (down), 0 (none)
+    - suggestions: array - follow-up suggestion strings (assistant only)
+    - hasattachment: bool - whether user message has a file attachment
+    - attachmenturl: string - URL of the attachment thumbnail
+    - attachmentname: string - filename of attachment
+    - avatarUrl: string - bot avatar URL (assistant only)
+
+    @package   local_aichat
+    @copyright 2026 Moodle AI Chat Contributors
+    @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+}}
+
+<div class="aichat-message aichat-message-{{role}} aichat-message-in" data-messageid="{{id}}">
+    {{#isassistant}}
+        <div class="aichat-avatar">
+            {{#avatarUrl}}
+                <img src="{{avatarUrl}}" alt="" class="aichat-avatar-img" />
+            {{/avatarUrl}}
+            {{^avatarUrl}}
+                <div class="aichat-avatar-default">
+                    <svg viewBox="0 0 48 48" width="16" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="24" y1="4" x2="24" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="24" cy="3" r="2" fill="currentColor"/>
+                        <rect x="6" y="9" width="36" height="26" rx="7" ry="7" fill="currentColor"/>
+                        <rect x="10" y="14" width="28" height="16" rx="4" ry="4" fill="white" opacity="0.15"/>
+                        <circle cx="17" cy="22" r="3" fill="white"/>
+                        <circle cx="18" cy="21" r="1.2" fill="currentColor"/>
+                        <circle cx="31" cy="22" r="3" fill="white"/>
+                        <circle cx="32" cy="21" r="1.2" fill="currentColor"/>
+                        <path d="M18 28 Q24 32.5 30 28" stroke="white" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+                        <rect x="2" y="17" width="5" height="7" rx="2" ry="2" fill="currentColor" opacity="0.7"/>
+                        <rect x="41" y="17" width="5" height="7" rx="2" ry="2" fill="currentColor" opacity="0.7"/>
+                        <rect x="19" y="35" width="10" height="4" rx="2" ry="2" fill="currentColor" opacity="0.8"/>
+                        <rect x="12" y="39" width="24" height="6" rx="3" ry="3" fill="currentColor"/>
+                    </svg>
+                </div>
+            {{/avatarUrl}}
+        </div>
+    {{/isassistant}}
+
+    <div class="aichat-bubble-col">
+        <div class="aichat-bubble aichat-bubble-{{role}}">
+            {{#hasattachment}}
+                <div class="aichat-attachment">
+                    {{#isimage}}
+                        <img src="{{attachmenturl}}" alt="{{attachmentname}}" class="aichat-attachment-thumb" />
+                    {{/isimage}}
+                    {{^isimage}}
+                        <div class="aichat-attachment-file">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            <span>{{attachmentname}}</span>
+                        </div>
+                    {{/isimage}}
+                </div>
+            {{/hasattachment}}
+
+            <div class="aichat-bubble-content">{{{message}}}</div>
+
+            <div class="aichat-bubble-meta">
+                <span class="aichat-time">{{timeformatted}}</span>
+            </div>
+        </div>
+
+        {{#isassistant}}
+            <div class="aichat-message-actions">
+                <div class="aichat-feedback" data-messageid="{{id}}">
+                    <button class="aichat-feedback-btn aichat-feedback-up {{#feedbackup}}aichat-feedback-active{{/feedbackup}}"
+                            data-feedback="1" aria-label="{{#str}}thumbsup, local_aichat{{/str}}" title="{{#str}}thumbsup, local_aichat{{/str}}">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                        </svg>
+                    </button>
+                    <button class="aichat-feedback-btn aichat-feedback-down {{#feedbackdown}}aichat-feedback-active{{/feedbackdown}}"
+                            data-feedback="-1" aria-label="{{#str}}thumbsdown, local_aichat{{/str}}" title="{{#str}}thumbsdown, local_aichat{{/str}}">
+                        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                        </svg>
+                    </button>
+                </div>
+
+                {{#hassuggestions}}
+                    <div class="aichat-suggestions">
+                        {{#suggestions}}
+                            <button class="aichat-suggestion-chip">{{.}}</button>
+                        {{/suggestions}}
+                    </div>
+                {{/hassuggestions}}
+            </div>
+        {{/isassistant}}
+    </div>
+</div>
