@@ -126,11 +126,19 @@ a, span, div, hr, dl, dt, dd
 #### URI Scheme Filtering
 
 **Server-side:**
-- **Blocked:** `javascript:`, `data:` (regex-based stripping from `href` and `src` attributes)
+- **Blocked:** `javascript:`, `data:`, `vbscript:` (the entire `href` attribute is removed)
+- HTML character references in links are decoded before validation and re-encoded for output
 - All attribute values are HTML-encoded via `htmlspecialchars()`
 
 **Client-side (defense-in-depth):**
-- **Blocked:** `javascript:`, `data:`, `vbscript:` (regex match on `href`/`src` values)
+- **Blocked:** `javascript:`, `data:`, `vbscript:` (the entire `href`/`src` attribute is removed)
+- DOM parsing decodes HTML character references before validation
+
+Both sanitizers ignore ASCII controls, spaces, and DEL (`0x00`-`0x20`, `0x7F`)
+when checking schemes, including embedded tabs and line breaks. Safe URL values
+are preserved rather than rewritten, and relative, fragment, HTTP(S), and mail
+links remain supported. The client check also applies to streamed output and
+previously stored messages when displayed; existing database records are not rewritten.
 
 #### Attribute Sanitization
 - All `on*` event handler attributes are removed (e.g., `onclick`, `onerror`)

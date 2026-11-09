@@ -550,6 +550,24 @@ This can generate the XML and upgrade code for you.
 
 ## Testing
 
+### Standalone URI Sanitizer Regression Tests
+
+These tests require no Moodle installation and share URL fixtures:
+
+```bash
+php tests/security/output_sanitizer_test.php
+```
+
+For browser tests, serve the repository over a local HTTP server (for example,
+`python -m http.server 8000 --bind 127.0.0.1`) and open
+`http://127.0.0.1:8000/tests/security/sanitizer_test.html`.
+The page must report `PASS`; it checks both the source and shipped AMD sanitizer.
+Stop the server after testing.
+
+The cases cover literal and entity-encoded control characters, all supported
+attribute quoting forms, safe URL preservation, rich-text/link protections, and
+idempotent sanitization.
+
 ### Running Moodle PHPUnit Tests
 
 ```bash

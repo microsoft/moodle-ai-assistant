@@ -30,7 +30,7 @@ define([], function() {
     };
 
     /** Dangerous URI schemes. */
-    var DANGEROUS_URI_RE = /^\s*(javascript|data|vbscript)\s*:/i;
+    var DANGEROUS_URI_RE = /^(javascript|data|vbscript):/i;
 
     /**
      * Walk a DOM tree and sanitize nodes in-place.
@@ -83,7 +83,9 @@ define([], function() {
 
                 // Check for dangerous URIs in href/src.
                 if (attrName === 'href' || attrName === 'src') {
-                    if (DANGEROUS_URI_RE.test(attrs[j].value)) {
+                    // DOM parsing has decoded entities; ignore controls when checking the scheme.
+                    var uri = attrs[j].value.replace(/[\x00-\x20\x7f]/g, '');
+                    if (DANGEROUS_URI_RE.test(uri)) {
                         child.removeAttribute(attrs[j].name);
                     }
                 }

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Sanitizer URI regression tests</title>
+<pre id="result">Running...</pre>
+<script>
+    var sanitizers = [];
+    function define(dependencies, factory) {
+        sanitizers.push(factory());
+    }
+</script>
+<script src="../../local/aichat/amd/src/sanitizer.js"></script>
+<script src="../../local/aichat/amd/build/sanitizer.min.js"></script>
+<script>
+    async function runTests() {
+        var response = await fetch('uri_cases.json');
+        if (!response.ok) {
+            throw new Error('Cannot load URI fixtures: ' + response.status);
+        }
+        var cases = await response.json();
+        var checks = 0;
+        if (sanitizers.length !== 2) {
+            throw new Error('Both source and shipped AMD modules must load');
+        }
+        sanitizers.forEach(function(sanitizer, moduleIndex) {
+            cases.forEach(function(testCase) {
+                ['"', "'", ''].forEach(function(quote) {
+                    if (quote === '' && (testCase.uri === '' || /[\s\x00-\x20]/.test(testCase.uri))) {
+                        return;
+                    }
+                    var input = '<p><a href=' + quote + testCase.uri + quote +
+                        ' title="Course"><strong>Link</strong></a></p>';
+                    var output = sanitizer.sanitize(input);
+                    var doc = new DOMParser().parseFromString(output, 'text/html');
+                    var anchor = doc.querySelector('a');
+                    if (!anchor || anchor.hasAttribute('href') !== testCase.safe) {
+                        throw new Error('Unexpected href in module ' + moduleIndex + ': ' + JSON.stringify(testCase));
+                    }
+                    if (testCase.safe && anchor.getAttribute('href') !==
+                            (testCase.expected === undefined ? testCase.uri : testCase.expected)) {
+                        throw new Error('Safe URL changed: ' + JSON.stringify(testCase));
+                    }
+                    if (anchor.rel !== 'noopener noreferrer' || anchor.target !== '_blank' ||
+                            anchor.title !== 'Course' || !anchor.querySelector('strong')) {
+                        throw new Error('Link formatting or protection lost: ' + output);
+                    }
+                    if (sanitizer.sanitize(output) !== output) {
+                        throw new Error('Sanitization is not idempotent: ' + JSON.stringify(testCase));
+                    }
+                    checks++;
+                });
+            });
+        });
+        document.getElementById('result').textContent = 'PASS: ' + checks + ' browser URI cases (source and build)';
+    }
+    runTests().catch(function(error) {
+        document.getElementById('result').textContent = 'FAIL: ' + error.message;
+        throw error;
+    });
+</script>
+</html>

@@ -67,12 +67,6 @@ class output_sanitizer {
         $response = preg_replace('/\s+on\w+\s*=\s*["\'][^"\']*["\']/i', '', $response);
         $response = preg_replace('/\s+on\w+\s*=\s*\S+/i', '', $response);
 
-        // Strip javascript:, data:, and vbscript: URIs.
-        $response = preg_replace('/href\s*=\s*["\']?\s*javascript\s*:/i', 'href="', $response);
-        $response = preg_replace('/src\s*=\s*["\']?\s*javascript\s*:/i', 'src="', $response);
-        $response = preg_replace('/href\s*=\s*["\']?\s*data\s*:/i', 'href="', $response);
-        $response = preg_replace('/href\s*=\s*["\']?\s*vbscript\s*:/i', 'href="', $response);
-
         // Build the strip_tags allowed list.
         $allowedtagstr = implode('', array_map(fn($t) => "<{$t}>", self::ALLOWED_TAGS));
         $response = strip_tags($response, $allowedtagstr);
@@ -127,14 +121,24 @@ class output_sanitizer {
 
         $result = [];
         // Match attribute="value" or attribute='value' or attribute=value.
-        preg_match_all('/(\w+)\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|(\S+))/', $attrstring, $matches, PREG_SET_ORDER);
+        preg_match_all('/(\w+)\s*=\s*(?:"([^"]*)"|\'([^\']*)\'|(\S+))/', $attrstring, $matches,
+            PREG_SET_ORDER | PREG_UNMATCHED_AS_NULL);
         foreach ($matches as $m) {
             $name = strtolower($m[1]);
             $value = $m[2] ?? $m[3] ?? $m[4] ?? '';
             if (in_array($name, $allowed, true)) {
-                // Reject dangerous URI schemes in any attribute value (javascript:, data:, vbscript:).
-                if (preg_match('/^\s*(javascript|data|vbscript)\s*:/i', $value)) {
-                    continue;
+                if ($name === 'href') {
+                    $value = html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+                    // PHP leaves some numeric controls undecoded, unlike HTML attribute parsing.
+                    $uri = preg_replace_callback('/&#(x[0-9a-f]+|[0-9]+);?/i', function ($matches) {
+                        $code = strtolower($matches[1][0]) === 'x'
+                            ? hexdec(substr($matches[1], 1)) : (int) $matches[1];
+                        return $code <= 0x7f ? chr($code) : $matches[0];
+                    }, $value);
+                    $uri = preg_replace('/[\x00-\x20\x7f]/', '', $uri);
+                    if (preg_match('/^(javascript|data|vbscript):/i', $uri)) {
+                        continue;
+                    }
                 }
                 $result[] = $name . '="' . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . '"';
             }
